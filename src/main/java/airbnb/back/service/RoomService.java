@@ -1,5 +1,6 @@
 package airbnb.back.service;
 
+import airbnb.back.dto.review.ReviewListResponseDto;
 import airbnb.back.dto.room.RoomDetailResponseDto;
 import airbnb.back.dto.room.RoomListResponseDto;
 import airbnb.back.mapper.RoomMapper;
@@ -39,8 +40,6 @@ public class RoomService {
         log.info("roomDto = {}", dto);
 
         return dto;
-
-
     }
 
 }

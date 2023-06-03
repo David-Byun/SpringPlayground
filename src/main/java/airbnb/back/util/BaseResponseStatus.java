@@ -37,7 +37,12 @@ public enum BaseResponseStatus {
 
     // RoomException
     NONE_ROOM(false, 2021, "존재하지 않는 숙소입니다."),
-    INACTIVE_ROOM(false, 2022, "비공개 숙소입니다.");
+    INACTIVE_ROOM(false, 2022, "비공개 숙소입니다."),
+
+
+    // review
+    POST_IMAGE_INVALID_EXTENSION(false, 2032, "업로드가 불가능한 확장자입니다."),
+    POST_IMAGE_CONVERT_ERROR(false, 2099, "AWS S3 이미지 변환이 실패했습니다.");
 
 
     private final boolean isSuccess;

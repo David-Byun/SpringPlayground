@@ -55,4 +55,9 @@ public class CustomExceptionHandler {
     public BaseResponse<Object> handleReviewException(ReviewException e) {
         return new BaseResponse<>(e.getStatus());
     }
+
+    @ExceptionHandler({AwsException.class})
+    public BaseResponse<Object> handleUserException(ReviewException e) {
+        return new BaseResponse<>(e.getStatus());
+    }
 }

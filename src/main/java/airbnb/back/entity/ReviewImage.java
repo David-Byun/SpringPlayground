@@ -1,9 +1,6 @@
 package airbnb.back.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
@@ -14,4 +11,10 @@ public class ReviewImage {
     private String reviewImageUrl;
     @NonNull
     private Review review;
+
+    @Builder
+    public ReviewImage(@NonNull String reviewImageUrl, @NonNull Review review) {
+        this.reviewImageUrl = reviewImageUrl;
+        this.review = review;
+    }
 }
