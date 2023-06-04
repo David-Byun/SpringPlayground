@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    resultMap
+    - column : 데이터베이스 필드, property : DTO 필드와 매핑
+    - column명과 property명이 같더라도 property를 생략하면 자바 객체와 매핑되지 않음 주의!(값은 0 or null 출력)
+
+    collection
+    - 1:N 관계에서 매핑해주는 아이
+    - property : Dto랑 매핑, select : select 문으로 가져오는 데이터들, column : 서브 select 문의 where 조건
+-->
+<mapper namespace="airbnb.back.mapper.ReviewImageMapper">
+    <!-- parameterType이 ReviewImage가 아닌지?-->
+    <insert id="save" parameterType="airbnb.back.entity.ReviewImage">
+        INSERT INTO ReviewImage (review_id, review_image_url)
+        VALUES (#{reviewImage.review.review_id}, #{reviewImage.reviewImageUrl})
+    </insert>
+</mapper>

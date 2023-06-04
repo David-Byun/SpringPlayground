@@ -37,5 +37,37 @@
         FROM ReviewImage
         WHERE review_id = #{reviewId}
     </select>
-
+    <!-- findById : 각 dto 별로 필요한 resultMap을 새로 만들어준다 -->
+    <resultMap id="ReviewResultMap" type="airbnb.back.dto.review.ReviewListResponseDto">
+        <id property="reviewId" column="reviewId" />
+        <id property="reservationId" column="reservationId" />
+        <id property="score" column="score" />
+        <id property="content" column="content" />
+        <id property="updatedAt" column="updatedAt" />
+        <collection property="reviewImageUrls" column="reviewId" select="findByIdImgList" />
+    </resultMap>
+    <select id="findById" resultMap="ReviewResultMap">
+        SELECT r.review_id      as reviewId,
+               r.reservation_id as reservationId,
+               r.score,
+               r.content,
+               r.updatedAt
+        FROM Review r
+                 left join Reservation rv on r.reservation_id = rv.reservation_id
+        WHERE r.status = 'ACTIVE'
+          AND r.review_id = ${reviewId}
+    </select>
+    <select id="findByIdImgList" resultType="String">
+        SELECT review_image_url
+        FROM ReviewImage
+        WHERE review_id = ${reviewId}
+    </select>
+    <!--
+        save
+        리뷰 안의 Reservation id를 가지고 INSERT 해줌
+    -->
+    <insert id="save" parameterType="airbnb.back.dto.review.ReviewSaveRequestDto" useGeneratedKeys="true" keyProperty="review_id">
+        INSERT INTO Review (reservation_id, score, content, status)
+        VALUES (#{review.reservation.id}, #{review.score}, #{review.content}, #{review.status})
+    </insert>
 </mapper>

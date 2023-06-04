@@ -2,6 +2,7 @@ package airbnb.back.util.exception.handler;
 
 import airbnb.back.util.BaseResponse;
 import airbnb.back.util.BaseResponseStatus;
+import airbnb.back.util.exception.AwsException;
 import airbnb.back.util.exception.ReviewException;
 import airbnb.back.util.exception.RoomException;
 import airbnb.back.util.exception.UserException;
