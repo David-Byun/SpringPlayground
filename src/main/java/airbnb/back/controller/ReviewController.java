@@ -5,7 +5,6 @@ import airbnb.back.dto.review.ReviewSaveRequestDto;
 import airbnb.back.dto.review.ReviewSaveResponseDto;
 import airbnb.back.service.ReviewService;
 import airbnb.back.util.BaseResponse;
-import airbnb.back.util.BaseResponseStatus;
 import airbnb.back.util.exception.ReviewException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
