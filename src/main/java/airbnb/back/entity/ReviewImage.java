@@ -4,7 +4,6 @@ import lombok.*;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class ReviewImage {
     private long id;
     @NonNull

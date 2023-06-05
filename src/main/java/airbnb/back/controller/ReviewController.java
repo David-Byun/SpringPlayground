@@ -6,8 +6,10 @@ import airbnb.back.dto.review.ReviewSaveResponseDto;
 import airbnb.back.service.ReviewService;
 import airbnb.back.util.BaseResponse;
 import airbnb.back.util.exception.ReviewException;
+import airbnb.back.util.jwt.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +20,7 @@ import static airbnb.back.util.BaseResponseStatus.INVALID_REQUEST;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/api/v1/")
 public class ReviewController {
 
     private final ReviewService reviewService;
@@ -39,6 +41,13 @@ public class ReviewController {
     public BaseResponse<ReviewListResponseDto> get(@PathVariable Long reviewId) {
         ReviewListResponseDto review = reviewService.findById(reviewId);
         return new BaseResponse<>(review);
+    }
+
+    @GetMapping("/reviews/jwttest")
+    public BaseResponse<String> jwttest(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+        String username = principalDetails.getUsername();
+
+        return new BaseResponse<>(username);
     }
 
     //리뷰, 리뷰이미지와 함께 POST, 사용자는 1번 user로 하드코딩, JWT TASK 후 수정 예정

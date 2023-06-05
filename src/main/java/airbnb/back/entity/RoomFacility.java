@@ -7,7 +7,6 @@ import lombok.NonNull;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class RoomFacility {
     private long id;
     @NonNull

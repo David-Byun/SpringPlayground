@@ -47,7 +47,16 @@ public enum BaseResponseStatus {
     //ReservationException
     POST_REVIEW_NONE_RESERVATION(false, 2041, "존재하지 않는 예약입니다."),
     POST_REVIEW_ALREADY_CREATED(false, 2042, "예약건에 대한 리뷰가 이미 존재합니다."),
-    NONE_REVIEW(false, 2031, "존재하지 않는 리뷰입니다.");
+    NONE_REVIEW(false, 2031, "존재하지 않는 리뷰입니다."),
+
+    // JwtException
+    UNSUPPORTED_TOKEN_TYPE(false, 2200, "지원되지 않는 토큰 타입입니다."),
+    MALFORMED_TOKEN_TYPE(false, 2201, "인증 토큰이 올바르게 구성되지 않았습니다."),
+    INVALID_SIGNATURE_JWT(false, 2202, "올바른 인증 시그니처가 아닙니다."),
+    INVALID_TOKEN_TYPE(false, 2203, "잘못된 토큰 타입입니다."),
+    ACCESS_DENIED(false, 2204, "권한이 없는 유저의 접근입니다."),
+    EXPIRED_ACCESS_TOKEN(false, 2205, "이미 만료된 Access 토큰입니다."),
+    EMPTY_AUTHORIZATION_HEADER(false, 2206, "Authorization 헤더가 없습니다.");
 
 
     private final boolean isSuccess;

@@ -7,7 +7,6 @@ import lombok.NonNull;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class RoomCategory {
     private long id;
     @NonNull //null을 허용하지 않을 경우

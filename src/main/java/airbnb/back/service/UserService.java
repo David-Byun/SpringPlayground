@@ -6,7 +6,7 @@ import airbnb.back.dto.user.UserSignUpRequestDto;
 import airbnb.back.dto.user.UserSignUpResponseDto;
 import airbnb.back.entity.user.User;
 import airbnb.back.mapper.UserMapper;
-import airbnb.back.util.JwtProvider;
+import airbnb.back.util.jwt.JwtProvider;
 import airbnb.back.util.Token;
 import airbnb.back.util.exception.UserException;
 import lombok.RequiredArgsConstructor;

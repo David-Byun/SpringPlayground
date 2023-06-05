@@ -8,7 +8,6 @@ import lombok.NonNull;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Favorite {
     private long id;
     private boolean isChecked;

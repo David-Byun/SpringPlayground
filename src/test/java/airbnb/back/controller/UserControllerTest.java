@@ -42,8 +42,6 @@ class UserControllerTest {
     @MockBean
     private UserService service;
 
-    @MockBean
-    private UserMapper mapper;
 
     /**
      * 유저 가입 테스트
