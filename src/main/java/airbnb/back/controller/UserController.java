@@ -28,7 +28,7 @@ import javax.validation.Valid;
  */
 @Tag(name = "user", description = "회원 API")
 @CrossOrigin
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     private final UserService userService;

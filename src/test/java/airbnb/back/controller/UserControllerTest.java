@@ -67,7 +67,7 @@ class UserControllerTest {
             따라서, 아래 예시에서 .andExpect(jsonPath("$.responseMessage").value("잘못된 요청이 존재합니다."))는 JSON 데이터의 최상위(root)에서 responseMessage 필드를 선택하고, 그 값이 "잘못된 요청이 존재합니다."인지 검증하는 것을 의미합니다.
          */
 
-        mockMvc.perform(post("/app/signup").with(csrf()).contentType("application/json")
+        mockMvc.perform(post("/api/v1/user/signup").with(csrf()).contentType("application/json")
                         .content(requestBody))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.responseMessage").value("잘못된 요청이 존재합니다."))
@@ -87,7 +87,7 @@ class UserControllerTest {
 
         when(service.joinUser(any(UserSignUpRequestDto.class))).thenReturn(UserSignUpResponseDto.builder().id(11L).build());
 
-        mockMvc.perform(post("/app/signup")
+        mockMvc.perform(post("/api/v1/user/signup")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(signUpRequestDto))
                         //security 로 인해 csrf 권한 부여해야만 403에러 발생하지 않음
@@ -110,7 +110,7 @@ class UserControllerTest {
 
         when(service.signin(any(UserSignInRequestDto.class))).thenThrow(new UserException(INVALID_EMAIL_OR_PASSWORD));
 
-        mockMvc.perform(post("/app/signin")
+        mockMvc.perform(post("/api/v1/user/signin")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(userSignInRequestDto))
                         //security 로 인해 csrf 권한 부여해야만 403에러 발생하지 않음
@@ -133,7 +133,7 @@ class UserControllerTest {
 
         when(service.signin(any(UserSignInRequestDto.class))).thenThrow(new UserException(NONE_EXIST_USER));
 
-        mockMvc.perform(post("/app/signin")
+        mockMvc.perform(post("/api/v1/user/signin")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(userSignInRequestDto))
                         //security 로 인해 csrf 권한 부여해야만 403에러 발생하지 않음

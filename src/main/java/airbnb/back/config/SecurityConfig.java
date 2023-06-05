@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .formLogin().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/v3/api-docs/**","/swagger-resources/**", "/swagger-ui/**", "/app/signup/**", "/app/signin/**", "/app/rooms/**", "/app/reviews/**", "/app/user/kakao/**" ).permitAll()
+                .antMatchers("/", "/v3/api-docs/**", "/api/v1/**","/swagger-resources/**", "/swagger-ui/**", "/app/signup/**", "/app/signin/**", "/app/rooms/**", "/app/reviews/**", "/app/user/kakao/**" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
