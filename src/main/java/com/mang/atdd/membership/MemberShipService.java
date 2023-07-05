@@ -86,6 +86,5 @@ public class MemberShipService {
 
         final int additionalAmount = ratePointService.calculateAmount(amount);
 
-        membership.setPoint(additionalAmount + membership.getPoint());
     }
 }

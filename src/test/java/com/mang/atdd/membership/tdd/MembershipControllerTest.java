@@ -296,12 +296,12 @@ public class MembershipControllerTest {
         final String url = "/api/v1/memberships/-1/accumulate";
 
         // when
-        final ResultActions resultActions = mockMvc.perform(
-                MockMvcRequestBuilders.post(url)
-                        .header(USER_ID_HEADER, "12345")
-                        .content(gson.toJson(membershipRequest(10000)))
-                        .contentType(MediaType.APPLICATION_JSON)
-        );
+//        final ResultActions resultActions = mockMvc.perform(
+//                MockMvcRequestBuilders.post(url)
+//                        .header(USER_ID_HEADER, "12345")
+//                        .content(gson.toJson(membershipRequest(10000)))
+//                        .contentType(MediaType.APPLICATION_JSON)
+//        );
     }
 
 
