@@ -60,6 +60,4 @@ public class UserSignUpRequestDto {
                 .oauthProvider(OauthProvider.NONE)
                 .build();
     }
-
-
 }

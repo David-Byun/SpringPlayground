@@ -1,9 +1,14 @@
 package airbnb.back.entity.user;
 
 import airbnb.back.entity.BaseTimeEntity;
+import airbnb.back.entity.Reservation;
+import airbnb.back.entity.Review;
 import airbnb.back.entity.Status;
 import airbnb.back.entity.user.oauth.OauthProvider;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Builder
@@ -30,6 +35,12 @@ public class User extends BaseTimeEntity {
     private boolean hostPermission;
     private OauthProvider oauthProvider;
 
+    @NonNull
+    List<Reservation> reservations = new ArrayList<>();
+
+    @NonNull
+    List<Review> reviews = new ArrayList<>();
+
     /*
         개발 진행시 필요하다면 constructor 추가로 만들어서 Builder 패턴 생성
      */
@@ -51,4 +62,9 @@ public class User extends BaseTimeEntity {
     public void setPassword(String encodedPassword) {
         this.password = encodedPassword;
     }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
 }

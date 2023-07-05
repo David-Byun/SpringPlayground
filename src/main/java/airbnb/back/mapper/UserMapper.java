@@ -13,5 +13,7 @@ public interface UserMapper {
     Optional<UserSignUpRequestDto> findUserByEmail(String email);
 
     Long findUserIdByEmail(String email);
+
+    Optional<User> findById(Long userId);
 }
 

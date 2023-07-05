@@ -1,23 +1,27 @@
 package airbnb.back.service;
 
-import airbnb.back.dto.review.ReviewListResponseDto;
-import airbnb.back.dto.review.ReviewSaveRequestDto;
-import airbnb.back.dto.review.ReviewSaveResponseDto;
+import airbnb.back.dto.ReservationReadResponseDto;
+import airbnb.back.dto.review.*;
 import airbnb.back.entity.Reservation;
 import airbnb.back.entity.Review;
 import airbnb.back.entity.ReviewImage;
+import airbnb.back.entity.Status;
+import airbnb.back.entity.user.User;
 import airbnb.back.mapper.ReservationMapper;
 import airbnb.back.mapper.ReviewImageMapper;
 import airbnb.back.mapper.ReviewMapper;
+import airbnb.back.mapper.UserMapper;
 import airbnb.back.util.BaseResponseStatus;
 import airbnb.back.util.aws.AwsS3Uploader;
 import airbnb.back.util.exception.ReservationException;
 import airbnb.back.util.exception.ReviewException;
+import airbnb.back.util.exception.UserException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static airbnb.back.util.BaseResponseStatus.*;
@@ -31,9 +35,11 @@ public class ReviewService {
     private final ReservationMapper reservationMapper;
     private final AwsS3Uploader awsS3Uploader;
     private final ReviewImageMapper reviewImageMapper;
+    private final UserMapper userMapper;
 
     public List<ReviewListResponseDto> findAllDesc(int roomId, int limit, int offset) {
-        List<ReviewListResponseDto> allDesc = reviewMapper.findAllDesc(roomId, limit, offset);
+        List<ReviewListResponseDto> allDesc = reviewMapper
+                .findAllDesc(roomId, limit, offset);
         return allDesc;
     }
 
@@ -85,6 +91,22 @@ public class ReviewService {
         }
     }
 
+    public ReviewResponseDto updateReview(Long userId, Long reviewId, ReviewRequestDto reviewRequestDto) {
+        Review review = reviewMapper.findByIdAndUserId(reviewId, userId).orElseThrow(() -> new ReviewException(INVALID_REQUEST));
+
+        if (reviewRequestDto.getScore() != null) {
+            review.updateScore(reviewRequestDto.getScore());
+        }
+
+        if (reviewRequestDto.getContent() != null) {
+            review.updateContent(reviewRequestDto.getContent());
+        }
+
+        if (reviewRequestDto.getReviewImages().isEmpty()) {
+
+        }
+        return null;
+    }
 }
 
 

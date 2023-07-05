@@ -16,4 +16,6 @@ public interface ReviewMapper {
 
     //review 객체 안에서 reservation를 꺼내오기 때문에 @Param으로 특정지었다고 추정
     void save(@Param("review") Review review);
+
+    Optional<Review> findByIdAndUserId(Long reviewId, Long userId);
 }

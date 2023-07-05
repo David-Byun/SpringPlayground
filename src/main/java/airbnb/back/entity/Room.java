@@ -4,9 +4,12 @@ import airbnb.back.entity.user.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Room extends BaseTimeEntity {
     private long id;
 
@@ -36,5 +39,14 @@ public class Room extends BaseTimeEntity {
     private Status status;
     @NonNull
     private User user;
+
+    private List<Review> reviews = new ArrayList<>();
+    private List<Reservation> reservation;
+    private List<RoomAvailable> roomAvailables = new ArrayList<>();
+    private List<RoomImage> roomImages = new ArrayList<>();
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
 
 }

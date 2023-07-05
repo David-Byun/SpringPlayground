@@ -13,6 +13,4 @@ public interface RoomMapper {
     String findById(Long roomId); //status를 가져옴
 
     RoomDetailResponseDto findByRoomId(Long roomId);
-
-
 }

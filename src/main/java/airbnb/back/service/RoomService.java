@@ -1,10 +1,8 @@
 package airbnb.back.service;
 
-import airbnb.back.dto.review.ReviewListResponseDto;
 import airbnb.back.dto.room.RoomDetailResponseDto;
 import airbnb.back.dto.room.RoomListResponseDto;
 import airbnb.back.mapper.RoomMapper;
-import airbnb.back.util.BaseResponseStatus;
 import airbnb.back.util.exception.RoomException;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
