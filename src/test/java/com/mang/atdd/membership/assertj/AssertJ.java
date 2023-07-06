@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.comparator.CustomComparator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class AssertJ {
 
     @Test
     void exception_test() {
+
         //WHEN
         Throwable thrown = catchThrowable(() -> {
             throw new Exception("boom!");
@@ -42,5 +44,34 @@ public class AssertJ {
         //THEN
         assertThat(thrown).isInstanceOf(Exception.class).hasMessageContaining("boom");
     }
+
+    @Test
+    void exception_assertion_example() {
+        assertThatIOException().isThrownBy(() -> {
+                    throw new IOException("boom!");
+                }).withMessage("%s!", "boom")
+                .withMessageContaining("boom")
+                .withNoCause();
+    }
+
+    @Test
+    void assertThatException() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    //함수
+                }).withMessage("인덱스는 1부터 시작");
+    }
+
+    @Test
+    void testException() {
+        assertThatExceptionOfType(IOException.class)
+                .isThrownBy(() -> {
+                    throw new IOException("boom!");
+                })
+                .withMessage("%s!", "boom")
+                .withMessageContaining("boom")
+                .withNoCause();
+    }
+
 
 }
