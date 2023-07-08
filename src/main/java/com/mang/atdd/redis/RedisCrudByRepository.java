@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @ToString
+//redisCrud를 키로 사용
 @RedisHash("redisCrud")
 public class RedisCrudByRepository {
 
