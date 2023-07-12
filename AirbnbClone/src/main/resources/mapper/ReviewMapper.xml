@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    resultMap
+    - column : 데이터베이스 필드, property : DTO 필드와 매핑
+    - column명과 property명이 같더라도 property를 생략하면 자바 객체와 매핑되지 않음 주의!(값은 0 or null 출력)
+
+    collection
+    - 1:N 관계에서 매핑해주는 아이
+    - property : Dto랑 매핑, select : select 문으로 가져오는 데이터들, column : 서브 select 문의 where 조건
+-->
+<mapper namespace="airbnb.back.mapper.ReviewMapper">
+    <resultMap id="ResultMap" type="airbnb.back.dto.review.ReviewListResponseDto">
+        <id column="reviewId" property="reviewId" />
+        <id column="reservationId" property="reservationId" />
+        <id column="score" property="score" />
+        <id column="content" property="content" />
+        <id column="updatedAt" property="updatedAt" />
+        <collection property="reviewImageUrls" column="reviewId" select="findAllDescImgList" />
+        <!-- collection column reviewId는 위에서 가져온 값을 반영해줌(findAllDesc에서 가져옴)-->
+    </resultMap>
+    <select id="findAllDesc" resultMap="ResultMap" parameterType="int">
+        select r.review_id      as reviewId,
+               r.reservation_id as reservationId,
+               r.score,
+               r.content,
+               r.updatedAt
+        from Review r
+                 left join Reservation rv on r.reservation_id = rv.reservation_id
+        WHERE r.status = 'ACTIVE'
+          and rv.room_id = ${roomId}
+        LIMIT ${limit} OFFSET ${offset}
+    </select>
+    <select id="findAllDescImgList" resultType="String">
+        SELECT review_image_url
+        FROM ReviewImage
+        WHERE review_id = #{reviewId}
+    </select>
+    <!-- findById : 각 dto 별로 필요한 resultMap을 새로 만들어준다 -->
+    <resultMap id="ReviewResultMap" type="airbnb.back.dto.review.ReviewListResponseDto">
+        <id property="reviewId" column="reviewId" />
+        <id property="reservationId" column="reservationId" />
+        <id property="score" column="score" />
+        <id property="content" column="content" />
+        <id property="updatedAt" column="updatedAt" />
+        <collection property="reviewImageUrls" column="reviewId" select="findByIdImgList" />
+    </resultMap>
+    <select id="findById" resultMap="ReviewResultMap">
+        SELECT r.review_id      as reviewId,
+               r.reservation_id as reservationId,
+               r.score,
+               r.content,
+               r.updatedAt
+        FROM Review r
+                 left join Reservation rv on r.reservation_id = rv.reservation_id
+        WHERE r.status = 'ACTIVE'
+          AND r.review_id = ${reviewId}
+    </select>
+    <select id="findByIdImgList" resultType="String">
+        SELECT review_image_url
+        FROM ReviewImage
+        WHERE review_id = ${reviewId}
+    </select>
+    <!--
+        save
+        리뷰 안의 Reservation id를 가지고 INSERT 해줌
+    -->
+    <insert id="save" parameterType="airbnb.back.dto.review.ReviewSaveRequestDto" useGeneratedKeys="true" keyProperty="review_id">
+        INSERT INTO Review (reservation_id, score, content, status)
+        VALUES (#{review.reservation.id}, #{review.score}, #{review.content}, #{review.status})
+    </insert>
+</mapper>
