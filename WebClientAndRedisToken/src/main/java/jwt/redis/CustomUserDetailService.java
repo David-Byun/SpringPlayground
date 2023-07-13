@@ -16,9 +16,9 @@ public class CustomUserDetailService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     @Override
-    @Cacheable(value = CacheKey.USER, key = "#username", unless = "#result == null")
+//    @Cacheable(value = CacheKey.USER, key = "#username", unless = "#result == null")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        memberRepository.findByUsernameWithAuthority(username).orElseThrow(() -> new NoSuchElementException("없는 회원입니다."));
+        Member member = memberRepository.findByUsernameWithAuthority(username).orElseThrow(() -> new NoSuchElementException("없는 회원입니다."));
         return CustomUserDetails.of(member);
     }
 }
