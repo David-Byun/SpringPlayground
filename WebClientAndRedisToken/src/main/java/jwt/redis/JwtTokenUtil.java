@@ -25,7 +25,7 @@ public class JwtTokenUtil {
     /*
         extractAllClaims : 토큰을 파싱하고, 서명을 확인한 후에 토큰의 클레임을 추출하여 반환
         이를 통해 토큰에 포함된 사용자 정보나 기타 데이터를 확인할 수 있음
-        클레임 jwt header/payload/signature 중 payload에 위치하여 토큰에 포함될 정보를 제공(발급자가 원하는 정보 사용자의 식별자, 권한, 만료시간 같은 데이터 포함하며 DB 조회하지 않고 토큰 신뢰
+        클레임 jwt header/payload/signature 중 payload에 위치하여 토큰에 포함될 정보를 제공(발급자가 원하는 정보 사용자의 식별자, 권한, 만료시간 같은 데이터 포함하며 DB 조회하지 않고 토큰 신뢰)
      */
     public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
