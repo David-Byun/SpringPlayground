@@ -52,7 +52,33 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.6.4</version>
 		</dependency>
+		<!-- Spring Cloud Config with AWS KMS -->
+		<dependency>
+			<groupId>org.zalando</groupId>
+			<artifactId>spring-cloud-config-aws-kms</artifactId>
+			<version>5.1.2</version>
+		</dependency>
 
+		<!-- AWS SDK Core -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-core</artifactId>
+			<version>1.11.1019</version>
+		</dependency>
+
+		<!-- AWS SDK for AWS Key Management Service (KMS) -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-kms</artifactId>
+			<version>1.11.1019</version>
+		</dependency>
+
+		<!-- JMESPath for Java -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>jmespath-java</artifactId>
+			<version>1.11.1019</version>
+		</dependency>
 		<!-- Reactor Test -->
 		<dependency>
 			<groupId>io.projectreactor</groupId>
@@ -60,6 +86,7 @@
 			<version>3.4.13</version> <!-- 해당 버전은 최신 버전이 아닌 경우에 맞게 수정하세요. -->
 			<scope>test</scope>
 		</dependency>
+
 
 		<!-- MapStruct -->
 		<dependency>
