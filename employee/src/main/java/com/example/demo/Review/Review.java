@@ -1,5 +1,8 @@
-package com.example.demo;
+package com.example.demo.Review;
 
+import com.example.demo.Reservation.Reservation;
+import com.example.demo.Room.Room;
+import com.example.demo.User.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -37,7 +40,7 @@ public class Review {
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
-
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id")
+    private Room room;
 }

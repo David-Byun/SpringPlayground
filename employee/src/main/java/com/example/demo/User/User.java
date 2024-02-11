@@ -1,5 +1,10 @@
-package com.example.demo;
+package com.example.demo.User;
 
+import com.example.demo.BaseTimeEntity;
+import com.example.demo.Favorite.Favorite;
+import com.example.demo.Reservation.Reservation;
+import com.example.demo.Review.Review;
+import com.example.demo.Role;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -42,8 +47,20 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Favorite> favorites = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Reservation> reservations = new ArrayList<>();
+
     private boolean privacyAgreement;
     private boolean marketingAgreement;
     private boolean hostPermission;
+
+
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
 
 }

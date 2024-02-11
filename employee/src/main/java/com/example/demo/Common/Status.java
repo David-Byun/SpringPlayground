@@ -1,2 +1,8 @@
-package com.example.demo.Common;public enum Status {
+package com.example.demo.Common;
+
+public enum Status {
+
+    ACTIVE,
+    INACTIVE,
+    PENDING;
 }
