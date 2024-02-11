@@ -1,0 +1,10 @@
+# database ?? ??
+spring:
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/spring_reactive?useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+  flyway:
+    url: jdbc:mysql://localhost:3306/spring_reactive?useUnicode=true&serverTimezone=Asia/Seoul
+    user: root
+    password: 1234
