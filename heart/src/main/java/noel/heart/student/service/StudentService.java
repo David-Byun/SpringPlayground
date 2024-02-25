@@ -1,6 +1,8 @@
 package noel.heart.student.service;
 
 import lombok.RequiredArgsConstructor;
+import noel.heart.student.dto.StudentRequestDto;
+import noel.heart.student.entity.Student;
 import noel.heart.student.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -8,25 +10,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StudentService {
 
-    private final StudentRepository repository;
+    private final StudentRepository studentRepository;
 
-    public void update() {
-
+    public void updateHeart(StudentRequestDto dto) {
+        Student student = dto.toEntity(dto);
+        studentRepository.updateHeartCntById(student);
     }
 
-    public void register() {
-
-    }
-
-    public void join() {
-
-    }
-
-    public static void plusHeart(int cnt) {
-
-    }
-
-    public static void minusHeart(int cnt) {
-
-    }
 }

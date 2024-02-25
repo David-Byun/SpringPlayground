@@ -6,23 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class Student {
+
     @Id
     @GeneratedValue
+    @Column(name = "student_id")
     private Long id;
-    private String firstname;
-    private String lastname;
+    private String name;
     private String password;
-    private Role role;
-    private long schoolClass; //학년
-    private long grade; //반
+    @JoinColumn(name = "classRoom_id")
+    @ManyToOne
+    private ClassRoom classRoom;
     private long heartCnt; //하트수
 }
